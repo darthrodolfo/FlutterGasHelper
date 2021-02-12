@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutterGasHelper/widgets/logo.widget.dart';
 import 'package:flutterGasHelper/widgets/submit.form.dart';
 import 'package:flutterGasHelper/widgets/success.widget.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,12 +9,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Color _color = Colors.deepPurple;
+  Color _color = Colors.grey[900];
   var _busy = false;
   var _completed = false;
-  var _resultText = 'Compensa utilizar álcool';
-  var _gasCtrl = new MoneyMaskedTextController();
-  var _alcCtrl = new MoneyMaskedTextController();
+  var _resultText = '';
+  var _gasolineController = new TextEditingController();
+  var _alcoholController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +30,12 @@ class _HomePageState extends State<HomePage> {
             Logo(),
             _completed
                 ? Success(
-                    result: _resultText,
+                    resultado: _resultText,
                     reset: reset,
                   )
                 : SubmitForm(
-                    alcCtrl: _alcCtrl,
-                    gasCtrl: _gasCtrl,
+                    alcoholController: _alcoholController,
+                    gasolineController: _gasolineController,
                     busy: _busy,
                     submitFunc: calculate,
                   ),
@@ -47,14 +46,16 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future calculate() {
-    double alc =
-        double.parse(_alcCtrl.text.replaceAll(new RegExp(r'[,.]'), '')) / 100;
-    double gas =
-        double.parse(_gasCtrl.text.replaceAll(new RegExp(r'[,.]'), '')) / 100;
+    double alc = double.parse(
+            _alcoholController.text.replaceAll(new RegExp(r'[,.]'), '')) /
+        100;
+    double gas = double.parse(
+            _gasolineController.text.replaceAll(new RegExp(r'[,.]'), '')) /
+        100;
     double res = alc / gas;
 
     setState(() {
-      _color = Colors.deepPurpleAccent;
+      _color = Colors.grey[800];
       _completed = false;
       _busy = true;
     });
@@ -64,9 +65,9 @@ class _HomePageState extends State<HomePage> {
         () => {
               setState(() {
                 if (res >= 0.7) {
-                  _resultText = 'Compensa utilizar Gasolina!';
+                  _resultText = 'Gasolina';
                 } else {
-                  _resultText = 'Compensa utilizar Álcool!';
+                  _resultText = 'Álcool';
                 }
 
                 _busy = false;
@@ -77,9 +78,9 @@ class _HomePageState extends State<HomePage> {
 
   reset() {
     setState(() {
-      _color = Colors.deepPurple;
-      _alcCtrl = new MoneyMaskedTextController();
-      _gasCtrl = new MoneyMaskedTextController();
+      _color = Colors.grey[900];
+      _alcoholController = new TextEditingController();
+      _gasolineController = new TextEditingController();
       _completed = false;
       _busy = false;
     });

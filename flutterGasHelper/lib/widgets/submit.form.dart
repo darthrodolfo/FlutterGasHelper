@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'input.widget.dart';
 import 'loading-button.widget.dart';
 
 class SubmitForm extends StatelessWidget {
-  // var gasCtrl = new MoneyMaskedTextController();
-  // var alcCtrl = new MoneyMaskedTextController();
-  // var busy = false;
-  // Function submitFunc;
-  final gasCtrl;
-  final alcCtrl;
+  final gasolineController;
+  final alcoholController;
   final busy;
   final Function submitFunc;
 
   SubmitForm({
-    @required this.gasCtrl,
-    @required this.alcCtrl,
+    @required this.gasolineController,
+    @required this.alcoholController,
     @required this.busy,
     @required this.submitFunc,
   });
@@ -25,14 +20,17 @@ class SubmitForm extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
+          SizedBox(
+            height: 80,
+          ),
           Padding(
             padding: EdgeInsets.only(
               left: 30,
               right: 30,
             ),
-            child: Input(
-              label: "Gasolina",
-              controller: gasCtrl,
+            child: GasPriceInput(
+              label: 'Gasolina',
+              controller: gasolineController,
             ),
           ),
           Padding(
@@ -40,19 +38,19 @@ class SubmitForm extends StatelessWidget {
               left: 30,
               right: 30,
             ),
-            child: Input(
-              label: "Álcool",
-              controller: alcCtrl,
+            child: GasPriceInput(
+              label: 'Álcool',
+              controller: alcoholController,
             ),
           ),
           SizedBox(
-            height: 25,
+            height: 5,
           ),
           LoadingButton(
             busy: busy,
             func: submitFunc,
             invert: false,
-            text: "CALCULAR",
+            text: 'Calcular',
           ),
         ],
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class LoadingButton extends StatelessWidget {
   var busy = false;
   var invert = false;
@@ -18,14 +19,23 @@ class LoadingButton extends StatelessWidget {
     return busy
         ? Container(
             alignment: Alignment.center,
+            margin: EdgeInsets.all(20),
             height: 50,
-            child: CircularProgressIndicator(
-              backgroundColor: Colors.white,
+            child: SizedBox(
+              width: 40,
+              height: 40,
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.white,
+                strokeWidth: 4,
+                valueColor: new AlwaysStoppedAnimation<Color>(
+                  Colors.greenAccent[400],
+                ),
+              ),
             ),
           )
         : Container(
             margin: EdgeInsets.all(30),
-            height: 60,
+            height: 45,
             width: double.infinity,
             decoration: BoxDecoration(
               color: invert
@@ -40,7 +50,7 @@ class LoadingButton extends StatelessWidget {
                 style: TextStyle(
                   color: invert ? Colors.white : Theme.of(context).primaryColor,
                   fontSize: 25,
-                  fontFamily: "Big Shoulders Display",
+                  fontFamily: 'Roboto',
                 ),
               ),
             ),

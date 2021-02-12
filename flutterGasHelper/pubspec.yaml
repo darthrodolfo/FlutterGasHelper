@@ -29,6 +29,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
   flutter_masked_text: ^0.8.0
+  mask_text_input_formatter:
     
 
 dev_dependencies:
@@ -62,9 +63,17 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Big Shoulders Display
+    - family: BigShouldersDisplay
       fonts:
         - asset: assets/fonts/BigShouldersDisplay-Light.ttf
+    - family: DS-DIGI
+      fonts:
+        - asset: assets/fonts/DS-DIGI.ttf
+    - family: Ubuntu
+      fonts:
+        - asset: assets/fonts/Ubuntu-Light.ttf
+        - asset: assets/fonts/Ubuntu-Regular.ttf
+        
         # - asset: fonts/Schyler-Italic.ttf
         #   style: italic
   #   - family: Trajan Pro
