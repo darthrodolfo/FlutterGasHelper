@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'loading-button.widget.dart';
 
 class Success extends StatelessWidget {
-  var result = "";
-  Function reset;
+  final String resultado;
+  final Function reset;
 
   Success({
-    @required this.result,
+    @required this.resultado,
     @required this.reset,
   });
 
@@ -22,25 +22,35 @@ class Success extends StatelessWidget {
       child: Column(
         children: <Widget>[
           SizedBox(
-            height: 50,
+            height: 20,
           ),
           Text(
-            result,
+            'Compensa utilizar:',
             style: TextStyle(
-              color: Theme.of(context).primaryColor,
-              fontSize: 40,
-              fontFamily: "Roboto",
+              color: Colors.grey[800],
+              fontSize: 30,
+              fontFamily: 'Roboto',
             ),
             textAlign: TextAlign.center,
           ),
           SizedBox(
-            height: 20,
+            height: 10,
+          ),
+          Text(
+            this.resultado,
+            style: TextStyle(
+              color: Colors.green[700],
+              fontSize: 35,
+              fontFamily: 'Ubuntu',
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
           ),
           LoadingButton(
             busy: false,
             func: reset,
             invert: true,
-            text: "CALCULAR NOVAMENTE",
+            text: 'Calcular novamente',
           ),
         ],
       ),

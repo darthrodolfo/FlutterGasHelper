@@ -11,25 +11,43 @@ class Logo extends StatelessWidget {
         Container(
           child: Image.asset(
             'assets/images/aog-white.png',
-            height: 80,
+            height: 120,
           ),
         ),
         SizedBox(
-          height: 10,
+          height: 30,
         ),
         RichText(
           text: TextSpan(
-              text: 'Alcool',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              text: '',
+              style: TextStyle(
+                fontFamily: 'Roboto',
+              ),
               children: <TextSpan>[
                 TextSpan(
+                  text: 'Alcool',
+                  style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 25,
+                  ),
+                ),
+                TextSpan(
                   text: ' ou ',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    fontStyle: FontStyle.italic,
+                    fontSize: 20,
+                  ),
                 ),
                 TextSpan(
                   text: 'Gasolina',
+                  style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 25,
+                  ),
                 ),
               ]),
-        )
+        ),
       ],
     );
   }

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class Input extends StatelessWidget {
-  // var label = "";
-  // var ctrl = new MoneyMaskedTextController();
+class GasPriceInput extends StatelessWidget {
   final String label;
-  final MoneyMaskedTextController controller;
+  final TextEditingController controller;
+  final MaskTextInputFormatter maskedTextFormmater = MaskTextInputFormatter(
+    mask: '#.###',
+    filter: {"#": RegExp(r'[0-9]')},
+  );
 
-  Input({
+  GasPriceInput({
     @required this.label,
     @required this.controller,
   });
@@ -16,6 +18,9 @@ class Input extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
+        SizedBox(
+          width: 30,
+        ),
         Container(
           width: 100,
           alignment: Alignment.centerRight,
@@ -23,27 +28,58 @@ class Input extends StatelessWidget {
             label,
             style: TextStyle(
               color: Colors.white,
-              fontSize: 35,
-              fontFamily: 'Roboto',
+              fontSize: 22,
+              fontFamily: 'Ubuntu',
+              //fontWeight: FontWeight.w300,
             ),
           ),
         ),
         SizedBox(
-          width: 20,
+          width: 10,
         ),
         Expanded(
           child: TextFormField(
-            controller: controller,
+            inputFormatters: [this.maskedTextFormmater],
+            controller: this.controller,
             keyboardType: TextInputType.number,
             style: TextStyle(
               color: Colors.white,
-              fontSize: 45,
-              fontFamily: 'Roboto',
+              fontSize: 35,
+              fontFamily: 'DS-DIGI',
+              fontWeight: FontWeight.w500,
             ),
             decoration: InputDecoration(
-              border: InputBorder.none,
+              hintText: '0.000',
+              hintStyle: TextStyle(
+                color: Colors.grey,
+              ),
+              enabledBorder: UnderlineInputBorder(
+                borderRadius:
+                    BorderRadius.only(bottomRight: Radius.circular(10)),
+                borderSide: BorderSide(
+                  color: Colors.white,
+                ),
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.greenAccent[700],
+                  width: 2,
+                ),
+              ),
+              prefix: Text(
+                'R\$  ',
+                style: TextStyle(
+                    color: Colors.greenAccent[700],
+                    fontSize: 18,
+                    fontFamily: 'Roboto',
+                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.normal),
+              ),
             ),
           ),
+        ),
+        SizedBox(
+          width: 50,
         ),
       ],
     );
